@@ -1,0 +1,15 @@
+venv/
+.venv/
+env/
+ENV/
+.env
+.env.*
+serviceAccount.json
+__pycache__/
+*.pyc
+*.pyo
+uploads/
+.vscode/
+.idea/
+.DS_Store
+n

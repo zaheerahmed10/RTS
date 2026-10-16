@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% set active_page = 'principal' %}
+{% block body_class %}page-dashboard{% endblock %}
+{% block title %}Principal Dashboard — RTS Ghotki{% endblock %}
+
+{% block topbar %}
+<div class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__left">
+      <a class="topbar__item" href="mailto:info@rtsghotki.edu.pk">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span>info@rtsghotki.edu.pk</span>
+      </a>
+      <a class="topbar__item" href="tel:+923000000000">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        <span>+92 300 0000000</span>
+      </a>
+    </div>
+    <div class="topbar__right">
+      <a class="topbar__link" href="{{ url_for('help_page') }}">Help</a>
+      <span class="topbar__divider"></span>
+      <a class="topbar__action topbar__action--home" href="{{ url_for('index') }}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="topbar__action topbar__action--logout" href="#" data-logout>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block header %}
+<header class="portal-header portal-header--dash" data-header>
+  <div class="portal-header__inner">
+    <a class="portal-header__brand" href="{{ url_for('index') }}">
+      <span class="portal-header__avatar" data-pr-navbar-avatar>?</span>
+      <span class="portal-header__identity">
+        <span class="portal-header__name">RTS ROSHAN TARA</span>
+        <span class="portal-header__sub">MODEL HIGHER SECONDARY SCHOOL</span>
+        <span class="portal-header__loc">GHOTKI, SINDH, PAKISTAN</span>
+      </span>
+    </a>
+    <div class="dash-user">
+      <div class="dash-user__info">
+        <span class="dash-user__label">WELCOME</span>
+        <span class="dash-user__name" data-pr-header-name>{{ user.title }} {{ user.name }}</span>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="dash" data-principal-dashboard>
+  <div class="dash__inner">
+
+    <!-- Hero -->
+    <div class="admin-hero">
+      <div class="admin-hero__left">
+        <span class="admin-hero__badge" data-pr-role-badge>PRINCIPAL PANEL</span>
+        <h1 class="admin-hero__title">School-wide Attendance</h1>
+        <p class="admin-hero__sub">View attendance records of every class in the school.</p>
+      </div>
+      <div class="admin-hero__right">
+        <div class="admin-hero__date">
+          <span class="admin-hero__date-label">TODAY</span>
+          <span class="admin-hero__date-value" data-current-date>—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="ap-stats">
+      <div class="ap-stat">
+        <span class="ap-stat__num" data-pr-total-classes>0</span>
+        <span class="ap-stat__label">Total Classes</span>
+      </div>
+      <div class="ap-stat">
+        <span class="ap-stat__num" data-pr-total-students>0</span>
+        <span class="ap-stat__label">Total Students</span>
+      </div>
+      <div class="ap-stat">
+        <span class="ap-stat__num" data-pr-total-records>0</span>
+        <span class="ap-stat__label">Total Records</span>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="ap-search">
+      <span class="ap-search__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <input type="text" placeholder="Search class name or class teacher…" data-pr-search>
+    </div>
+
+    <!-- Classes table -->
+    <div class="ap-table-wrap">
+      <table class="ap-table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Class Name</th>
+            <th>Class Teacher</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody data-pr-classes>
+          <tr><td colspan="4" class="ap-table__empty">Loading classes…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Detail panel -->
+    <div class="aa-detail" data-pr-detail hidden>
+      <div class="aa-detail__head">
+        <div>
+          <h2 class="aa-detail__title" data-pr-detail-title>Class Attendance</h2>
+          <p class="aa-detail__sub" data-pr-detail-sub>—</p>
+        </div>
+        <button type="button" class="aa-detail__close" data-pr-detail-close>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="aa-detail__filters">
+        <input type="text" class="aa-detail__search" placeholder="Search by student name or roll…" data-pr-detail-search>
+        <input type="date" class="aa-detail__date" data-pr-detail-date>
+      </div>
+
+      <div class="aa-detail__table-wrap">
+        <table class="ap-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Date</th>
+              <th>Day</th>
+              <th>Topic</th>
+              <th>Student</th>
+              <th>Roll</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody data-pr-detail-body>
+            <tr><td colspan="7" class="ap-table__empty">Click a class above to view attendance.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

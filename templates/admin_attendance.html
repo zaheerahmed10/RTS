@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% set active_page = 'admin' %}
+{% block body_class %}page-dashboard{% endblock %}
+{% block title %}Attendance — RTS Ghotki{% endblock %}
+
+{% block topbar %}
+<div class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__left">
+      <a class="topbar__item" href="mailto:info@rtsghotki.edu.pk">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span>info@rtsghotki.edu.pk</span>
+      </a>
+      <a class="topbar__item" href="tel:+923000000000">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        <span>+92 300 0000000</span>
+      </a>
+    </div>
+    <div class="topbar__right">
+      <a class="topbar__link" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+      <a class="topbar__link" href="{{ url_for('help_page') }}">Help</a>
+      <span class="topbar__divider"></span>
+      <a class="topbar__action topbar__action--home" href="{{ url_for('admin_dashboard') }}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="topbar__action topbar__action--logout" href="#" data-logout>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block header %}
+<header class="portal-header portal-header--dash" data-header>
+  <div class="portal-header__inner">
+    <a class="portal-header__brand" href="{{ url_for('index') }}">
+      <span class="portal-header__crest" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="52" height="52">
+          <circle cx="50" cy="50" r="48" fill="#1F4E79"/>
+          <circle cx="50" cy="50" r="41" fill="#FDFDFD" stroke="#1F4E79" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="33" fill="#1F4E79"/>
+          <circle cx="50" cy="50" r="27" fill="none" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <path d="M50 22 L70 36 L70 62 L50 76 L30 62 L30 36 Z" fill="none" stroke="#F5A623" stroke-width="2.5"/>
+          <path d="M38 50 L46 58 L64 40" stroke="#F5A623" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </span>
+      <span class="portal-header__identity">
+        <span class="portal-header__name">RTS ROSHAN TARA</span>
+        <span class="portal-header__sub">MODEL HIGHER SECONDARY SCHOOL</span>
+        <span class="portal-header__loc">GHOTKI, SINDH, PAKISTAN</span>
+      </span>
+    </a>
+    <div class="dash-user">
+      <div class="dash-user__info">
+        <span class="dash-user__label">Welcome</span>
+        <span class="dash-user__name">{{ user.title }} {{ user.name }}</span>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="dash" data-admin-attendance-page>
+  <div class="dash__inner">
+
+    <!-- Page head -->
+    <div class="ap-page-head">
+      <a href="{{ url_for('admin_dashboard') }}" class="ap-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </a>
+      <div class="ap-page-head__main">
+        <span class="ap-page-head__kicker">Attendance Overview</span>
+        <h1 class="ap-page-head__title">All Classes Attendance</h1>
+        <p class="ap-page-head__sub">Select a class to view its attendance records.</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="ap-stats">
+      <div class="ap-stat">
+        <span class="ap-stat__num" data-aa-total-classes>0</span>
+        <span class="ap-stat__label">Classes</span>
+      </div>
+      <div class="ap-stat">
+        <span class="ap-stat__num" data-aa-total-records>0</span>
+        <span class="ap-stat__label">Total Records</span>
+      </div>
+      <div class="ap-stat">
+        <span class="ap-stat__num" data-aa-total-present>0</span>
+        <span class="ap-stat__label">Present Records</span>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="ap-search">
+      <span class="ap-search__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </span>
+      <input type="text" placeholder="Search class name…" data-aa-search>
+    </div>
+
+    <!-- Classes table -->
+    <div class="ap-table-wrap">
+      <table class="ap-table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Class</th>
+            <th>Students</th>
+            <th>Records Saved</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody data-aa-classes>
+          <tr><td colspan="5" class="ap-table__empty">Loading classes…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Selected class attendance panel -->
+    <div class="aa-detail" data-aa-detail hidden>
+      <div class="aa-detail__head">
+        <div>
+          <h2 class="aa-detail__title" data-aa-detail-title>Class Attendance</h2>
+          <p class="aa-detail__sub" data-aa-detail-sub>—</p>
+        </div>
+        <button type="button" class="aa-detail__close" data-aa-detail-close>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="aa-detail__filters">
+        <input type="text" class="aa-detail__search" placeholder="Search by student name or roll…" data-aa-detail-search>
+        <input type="date" class="aa-detail__date" data-aa-detail-date>
+      </div>
+
+      <div class="aa-detail__table-wrap">
+        <table class="ap-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Date</th>
+              <th>Day</th>
+              <th>Student</th>
+              <th>Roll</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody data-aa-detail-body>
+            <tr><td colspan="6" class="ap-table__empty">Loading records…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

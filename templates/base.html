@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}RTS Ghotki{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Smart attendance and student management for Roshan Tara Model Higher Secondary School, Ghotki.{% endblock %}">
+  <meta name="theme-color" content="#1F4E79">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {% block topbar %}
+  <div class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__left">
+        <a class="topbar__item" href="mailto:info@rtsghotki.edu.pk">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span>info@rtsghotki.edu.pk</span>
+        </a>
+        <a class="topbar__item" href="tel:+923000000000">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <span>+92 300 0000000</span>
+        </a>
+      </div>
+      <div class="topbar__right">
+        <a class="topbar__link" href="{{ url_for('help_page') }}">Help</a>
+        <a class="topbar__link" href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block header %}
+  <header class="portal-header" data-header>
+    <div class="portal-header__inner">
+      <a class="portal-header__brand" href="{{ url_for('index') }}">
+        <span class="portal-header__crest" aria-hidden="true">
+          <svg viewBox="0 0 100 100" width="52" height="52">
+            <circle cx="50" cy="50" r="48" fill="#1F4E79"/>
+            <circle cx="50" cy="50" r="41" fill="#FDFDFD" stroke="#1F4E79" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="33" fill="#1F4E79"/>
+            <circle cx="50" cy="50" r="27" fill="none" stroke="#fff" stroke-width="1" opacity=".7"/>
+            <path d="M50 22 L70 36 L70 62 L50 76 L30 62 L30 36 Z" fill="none" stroke="#F5A623" stroke-width="2.5"/>
+            <path d="M38 50 L46 58 L64 40" stroke="#F5A623" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </span>
+        <span class="portal-header__identity">
+          <span class="portal-header__name">ROSHAN TARA</span>
+          <span class="portal-header__sub">MODEL HIGHER SECONDARY SCHOOL</span>
+          <span class="portal-header__loc">GHOTKI, SINDH, PAKISTAN</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="{{ url_for('index') }}#top">Home</a></li>
+          <li><a class="nav__link" href="{{ url_for('index') }}#rules">Attendance Rules</a></li>
+          <li><a class="nav__link" href="{{ url_for('index') }}#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="header-login" href="#login">Login</a>
+
+      <button class="nav-toggle" type="button"
+              aria-expanded="false" aria-controls="mobile-nav"
+              aria-label="Open navigation menu" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+      <ul class="mobile-nav__list">
+        <li><a href="{{ url_for('index') }}#top">Home</a></li>
+        <li><a href="{{ url_for('index') }}#rules">Attendance Rules</a></li>
+        <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+      </ul>
+      <a class="btn-portal btn-portal--primary" href="#login">Login</a>
+    </div>
+  </header>
+  {% endblock %}
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}
+  <footer class="portal-footer" id="contact">
+    <div class="portal-footer__inner">
+      <div class="portal-footer__col portal-footer__col--brand">
+        <div class="portal-footer__brand">
+          <svg viewBox="0 0 100 100" width="36" height="36" aria-hidden="true">
+            <circle cx="50" cy="50" r="48" fill="#F5A623"/>
+            <circle cx="50" cy="50" r="40" fill="#1F4E79"/>
+            <path d="M50 22 L70 36 L70 62 L50 76 L30 62 L30 36 Z" fill="none" stroke="#F5A623" stroke-width="3"/>
+            <path d="M38 50 L46 58 L64 40" stroke="#F5A623" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span>RTS Ghotki</span>
+        </div>
+        <p class="portal-footer__desc">Roshan Tara Model Higher Secondary School, Ghotki.</p>
+      </div>
+
+      <div class="portal-footer__col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{{ url_for('index') }}#top">Home</a></li>
+          <li><a href="{{ url_for('index') }}#rules">Attendance Rules</a></li>
+          <li><a href="#login">Login</a></li>
+        </ul>
+      </div>
+
+      <div class="portal-footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@rtsghotki.edu.pk">info@rtsghotki.edu.pk</a></li>
+          <li><a href="tel:+923000000000">+92 300 0000000</a></li>
+          <li>Ghotki, Sindh</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="portal-footer__bottom">
+      <p>© {{ current_year }} Roshan Tara Model Higher Secondary School, Ghotki.</p>
+      <p class="portal-footer__mini">© {{ current_year }} RTS Ghotki</p>
+    </div>
+  </footer>
+  {% endblock %}
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="{{ url_for('static', filename='js/firebase-init.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

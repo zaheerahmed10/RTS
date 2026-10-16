@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% set active_page = 'admin' %}
+{% block body_class %}page-dashboard{% endblock %}
+{% block title %}Add Principal — RTS Ghotki{% endblock %}
+
+{% block topbar %}
+<div class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__left">
+      <a class="topbar__item" href="mailto:info@rtsghotki.edu.pk">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span>info@rtsghotki.edu.pk</span>
+      </a>
+      <a class="topbar__item" href="tel:+923000000000">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        <span>+92 300 0000000</span>
+      </a>
+    </div>
+    <div class="topbar__right">
+      <a class="topbar__link" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+      <a class="topbar__link" href="{{ url_for('help_page') }}">Help</a>
+      <span class="topbar__divider"></span>
+      <a class="topbar__action topbar__action--home" href="{{ url_for('admin_dashboard') }}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="topbar__action topbar__action--logout" href="#" data-logout>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block header %}
+<header class="portal-header portal-header--dash" data-header>
+  <div class="portal-header__inner">
+    <a class="portal-header__brand" href="{{ url_for('index') }}">
+      <span class="portal-header__crest" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="52" height="52">
+          <circle cx="50" cy="50" r="48" fill="#1F4E79"/>
+          <circle cx="50" cy="50" r="41" fill="#FDFDFD" stroke="#1F4E79" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="33" fill="#1F4E79"/>
+          <circle cx="50" cy="50" r="27" fill="none" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <path d="M50 22 L70 36 L70 62 L50 76 L30 62 L30 36 Z" fill="none" stroke="#F5A623" stroke-width="2.5"/>
+          <path d="M38 50 L46 58 L64 40" stroke="#F5A623" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </span>
+      <span class="portal-header__identity">
+        <span class="portal-header__name">RTS ROSHAN TARA</span>
+        <span class="portal-header__sub">MODEL HIGHER SECONDARY SCHOOL</span>
+        <span class="portal-header__loc">GHOTKI, SINDH, PAKISTAN</span>
+      </span>
+    </a>
+    <div class="dash-user">
+      <div class="dash-user__info">
+        <span class="dash-user__label">Welcome</span>
+        <span class="dash-user__name">{{ user.title }} {{ user.name }}</span>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="jf-page">
+  <div class="jf-page__inner">
+
+    <a href="{{ url_for('admin_principals') }}" class="jf-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </a>
+
+    <div class="jf-card">
+      <aside class="jf-side">
+        <div class="jf-side__shape">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/>
+            <path d="M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/>
+          </svg>
+        </div>
+        <span class="jf-side__tag">ADMIN STAFF</span>
+      </aside>
+
+      <main class="jf-main">
+        <div class="jf-head">
+          <span class="jf-head__kicker">NEW REGISTRATION</span>
+          <h1 class="jf-head__title">Add Principal</h1>
+          <p class="jf-head__sub">Register a Principal or Vice Principal with school-wide attendance access.</p>
+        </div>
+
+        <form class="jf-form" id="add-principal-form" data-admin-form="principal" novalidate>
+
+          <div class="jf-field">
+            <label for="ap-name">Full Name <em>*</em></label>
+            <input id="ap-name" name="name" type="text" data-name-input data-email-type="principal" placeholder="e.g. Mr. Ahmed Khan" required>
+          </div>
+
+          <div class="jf-field">
+            <label for="ap-role">Role <em>*</em></label>
+            <select id="ap-role" name="role_type" class="jf-select" data-role-type required>
+              <option value="principal">Principal</option>
+              <option value="vice_principal">Vice Principal</option>
+            </select>
+          </div>
+
+          <div class="jf-field-row">
+            <div class="jf-field">
+              <label for="ap-email">Email (auto-generated)</label>
+              <input id="ap-email" type="email" data-auto-email="principal" readonly>
+            </div>
+            <div class="jf-field">
+              <label for="ap-password">Password (auto)</label>
+              <input id="ap-password" type="text" data-auto-password readonly>
+            </div>
+          </div>
+
+          <div class="jf-field">
+            <label for="ap-qualification">Qualification (optional)</label>
+            <input id="ap-qualification" name="qualification" type="text" placeholder="e.g. M.A Education">
+          </div>
+
+          <!-- Photo -->
+          <div class="jf-field">
+            <label>Profile Photo</label>
+            <div class="photo-picker" data-photo-preview-wrap>
+              <div class="photo-picker__slot">
+                <div class="photo-picker__placeholder" data-photo-placeholder>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/>
+                  </svg>
+                  <strong>Add photo</strong>
+                  <small>Gallery or Camera</small>
+                </div>
+                <img class="photo-picker__preview" data-photo-preview hidden alt="">
+              </div>
+              <div class="photo-picker__actions">
+                <label class="photo-picker__btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  Gallery
+                  <input type="file" accept="image/*" data-gallery-input hidden>
+                </label>
+                <button type="button" class="photo-picker__btn" data-open-camera>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                  Camera
+                </button>
+              </div>
+              <button type="button" class="photo-picker__clear" data-photo-clear hidden>Remove photo</button>
+            </div>
+          </div>
+
+          <div class="jf-status" data-form-status hidden></div>
+
+          <div class="jf-actions">
+            <button type="button" class="jf-cancel" onclick="window.location.href='{{ url_for('admin_principals') }}'">Cancel</button>
+            <button type="submit" class="jf-submit" data-submit-btn>
+              <span>Add Principal</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+
+        </form>
+      </main>
+    </div>
+
+  </div>
+</section>
+
+<!-- Camera Modal -->
+<div class="modal-backdrop" id="camera-modal" hidden data-modal>
+  <div class="modal modal--camera" role="dialog" aria-modal="true">
+    <header class="modal__head">
+      <h3 class="modal__title">Capture Photo</h3>
+      <button type="button" class="modal__close" aria-label="Close" data-close-modal>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </header>
+    <div class="modal__body modal__body--camera">
+      <div class="camera-view">
+        <video class="camera-view__video" autoplay playsinline muted data-camera-video></video>
+        <div class="camera-view__overlay" aria-hidden="true">
+          <span class="camera-view__corner camera-view__corner--tl"></span>
+          <span class="camera-view__corner camera-view__corner--tr"></span>
+          <span class="camera-view__corner camera-view__corner--bl"></span>
+          <span class="camera-view__corner camera-view__corner--br"></span>
+        </div>
+        <div class="camera-view__status" data-camera-status>Starting camera…</div>
+      </div>
+      <div class="camera-controls">
+        <button type="button" class="camera-controls__btn camera-controls__btn--ghost" data-camera-switch hidden>Flip</button>
+        <button type="button" class="camera-controls__shutter" data-camera-capture disabled aria-label="Capture">
+          <span class="camera-controls__shutter-inner"></span>
+        </button>
+        <button type="button" class="camera-controls__btn camera-controls__btn--ghost" data-camera-cancel>Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
